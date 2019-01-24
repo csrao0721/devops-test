@@ -1,0 +1,26 @@
+{
+  "module": "devops-test",
+  "cft_location": "/",
+  "cft_s3_path": "https://s3.amazonaws.com/{bucket_name}/devops-test/devops-test.template",
+  "cft_bucket_name": "???",
+  "environment": {
+    "development": {
+      "stage": {
+        "integration": "???",
+        "acceptance": "???"
+      },
+      "DataBucketName": "???"
+    },
+    "test": {
+      "stage": {
+        "integration": "???"
+      },
+      "DataBucketName": "???",
+      "assume_role": {
+        "role_arn": "arn:aws:iam::123456789012:role/CrossAccount-Dev-to-Test",
+        "external_id": "secret-value",
+        "role_session_name": "my-session-name"
+      }
+    }
+  }
+}
