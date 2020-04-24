@@ -1,3 +1,4 @@
 Pillow-6.2.0.dist-info
 src/PIL
-sec/Pillow-6.2.0.dist-info
+src/Pillow-6.2.0.dist-info
+built_template.json
