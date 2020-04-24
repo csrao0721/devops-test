@@ -41,7 +41,7 @@ At heavywater, in addition to writing source code, deveopers are responsible for
 ---
 
 ## Outcomes
-- A latest and gratest master is live
+- A latest and gratest master is live in production
 - Another developer can pull request a code change on this project
 - Before the change can be merged into master:
   - Their infrastructure is validated according to security policies
