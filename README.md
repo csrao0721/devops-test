@@ -40,12 +40,11 @@ At heavywater, in addition to writing source code, deveopers are responsible for
 ## Tasks
 
 **Unordered list of possible tasks to complete**
-- [ ] create a github repository for this project
-- [ ] create an aws free teir account
-- [ ] integrate github with aws codepipeline and codebuild
-- [ ] evaluate best practices on the project from a security context
-- [ ] comment on and remediate security issues present in the template and source code
-- [ ] document how another developer can implement the cicd infrastructure you design
+ - [ ] create an aws free tier account in order to build and deploy the application infrastructure into
+ - [ ] integrate github with aws codepipeline and codebuild to automate the deployment of the application
+ - [ ] remediate security issues present in the provided source code and comment on the changes that were made
+ - [ ] evaluate the implementation and make improvements based on best practices
+ - [ ] document how another developer can execute your solution and any design choices that you have made
  
 ---
 
