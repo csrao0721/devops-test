@@ -1,0 +1,100 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Transform": "AWS::Serverless-2016-10-31",
+    "Description": "A function is triggered off an upload to a bucket. It uploads a resized image to another bucket.",
+    "Parameters": {
+        "BucketName": {
+            "Type": "String",
+            "Default": "heavywater-devops-test"
+        }
+    },
+    "Resources": {
+        "ServiceApi": {
+            "Type": "AWS::Serverless::Api",
+            "Properties": {
+                "StageName": "prod"
+            }
+        },
+        "ServiceApiFunction": {
+            "Type": "AWS::Serverless::Function",
+            "Properties": {
+                "Handler": "index.resize",
+                "Runtime": "python3.6",
+                "CodeUri": "s3://cold-lambda/devops-test/09d179dc6ce1b3169caf842b3e3e84e7",
+                "Policies": [
+                    {
+                        "Statement": [
+                            {
+                                "Effect": "Allow",
+                                "Action": "*",
+                                "Resource": "*"
+                            }
+                        ]
+                    }
+                ],
+                "Environment": {
+                    "Variables": {
+                        "BucketName": {
+                            "Ref": "BucketName"
+                        }
+                    }
+                },
+                "Events": {
+                    "PostApi": {
+                        "Type": "Api",
+                        "Properties": {
+                            "Path": "/post",
+                            "Method": "POST",
+                            "RestApiId": {
+                                "Ref": "ServiceApi"
+                            }
+                        }
+                    }
+                },
+                "Layers": [
+                    {
+                        "Ref": "PillowLibrary"
+                    }
+                ],
+                "Tracing": "Active"
+            }
+        },
+        "PillowLibrary": {
+            "Type": "AWS::Serverless::LayerVersion",
+            "Properties": {
+                "ContentUri": "s3://cold-lambda/devops-test/d6d1c61d49e09c55f02e72a2c18122bd",
+                "CompatibleRuntimes": [
+                    "python3.6"
+                ]
+            }
+        },
+        "SourceBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+                "BucketName": {
+                    "Ref": "BucketName"
+                }
+            }
+        }
+    },
+    "Outputs": {
+        "ApiUrl": {
+            "Description": "The API URL",
+            "Value": {
+                "Fn::Sub": "https://${ServiceApi}.execute-api.${AWS::Region}.amazonaws.com/"
+            }
+        },
+        "LambdaServiceApiLogs": {
+            "Description": "Api Lambda Logs",
+            "Value": {
+                "Fn::Sub": "https://console.aws.amazon.com/cloudwatch/home?region=${AWS::Region}#logStream:group=/aws/lambda/${ServiceApiFunction};streamFilter=typeLogStreamPrefix"
+            }
+        },
+        "DestBucket": {
+            "Description": "S3 Bucket name that will store the resized versions of the images from the source bucket",
+            "Value": {
+                "Ref": "BucketName"
+            }
+        }
+    }
+}
