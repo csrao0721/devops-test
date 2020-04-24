@@ -6,11 +6,12 @@ dest_bucket = os.environ['BucketName']
 
 
 def resize(event, context):
+    request_body = json.loads(event['body'])
     obj = s3.Object(
-        bucket_name=dest_bucket,
-        key='request',
+        bucket_name= dest_bucket,
+        key= request_body['name'],
     )
-    obj.put(Body=json.dumps(event), ContentType='application/json')
+    obj.put(Body=json.dumps(request_body['content']), ContentType='application/json')
 
     
     return {

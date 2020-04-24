@@ -14,7 +14,7 @@ The purpose of this test is to evaluate your abilities in several dimensions at 
 
 ## Your Mission
 
-Should you choose to accept it ... We have provided an [AWS Sam](https://github.com/awslabs/serverless-application-model) project that recieves a request over an api and simply drops it into an s3 bucket. You need to develop tooling to enable developers to iterate on this project and get changes to production as fast as possible. 
+Should you choose to accept it ... We have provided an [AWS Sam](https://github.com/awslabs/serverless-application-model) project that recieves a request over an api to store some content in an s3 bucket. You need to develop tooling to enable developers to iterate on this project and get changes to production as fast as possible. 
 
 At heavywater, in addition to writing source code, deveopers are responsible for writing infrastructure as code so tooling you develop must consider that developers may want to make changes on the cloudformation templates in addition to source.
 
@@ -27,13 +27,12 @@ At heavywater, in addition to writing source code, deveopers are responsible for
 - Before the change can be merged into master:
   - Their infrastructure is validated according to security policies
   - Their dev branch is unit tested
-  - Their dev branch integration tested
+  - Their dev branch integration tested 
+    - The integration test should invoke the api at it's endpoint and recieve a response that contains the lambda event
+    - The test should also verify that a file was persisted in the s3 bucket under the name specified in the request.
   - The dev code does not interfere with running master and its infrastructure
 - After their change is merged to master:
-  - Master infrastructure is validated according to security policies
-  - Master code is unit tested
   - The live production version is updated without downtime
-  - Production is tested post update
   - An alarm is raised if something is wrong
 
 ---
@@ -43,16 +42,10 @@ At heavywater, in addition to writing source code, deveopers are responsible for
 **Unordered list of possible tasks to complete**
 - [ ] create a github repository for this project
 - [ ] create an aws free teir account
-- [ ] write unit tests for python script
-- [ ] write integration tests against the launched stack
-- [ ] write codebuild spec file for unit tests
-- [ ] trigger code pipeline and publish from github webhooks/github actions
-- [ ] validate the template before launch
-- [ ] make the repo installable through some package manager
-- [ ] add linting/static analysis to cloudformation template
-- [ ] add linting/static analysis to python script
+- [ ] integrate github with aws codepipeline and codebuild
 - [ ] evaluate best practices on the project from a security context
 - [ ] comment on and remediate security issues present in the template and source code
+- [ ] document how another developer can implement the cicd infrastructure you design
  
 ---
 
@@ -60,9 +53,7 @@ At heavywater, in addition to writing source code, deveopers are responsible for
 
 The interview will be conducted as a code review. It is not required that you perform all tasks or achieve all the outcomes, but *you should be prepared to explain the tradeoffs that you made* from a priority and security standpoint. 
 
-We will clone your repo and checkout the appropriate branch. We will then try to run your code on our machine against one of our AWS account. If we "accept" that branch/PR we will approve the PR and you will merge your branch to master. We will then move on to the next branch.
-
-Your score will be the number of the above tasks which "accepted" and able to be run from the master branch at the end of this process.
+We will clone your repo and checkout the appropriate branch. We will then try to run your code on our machine against one of our AWS account. 
 
 Due to the public nature of this repo, forking will share you work with other candidates. Please do no fork this repo. Clone it and init your own new git repo.
 
