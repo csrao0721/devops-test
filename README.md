@@ -14,7 +14,7 @@ The purpose of this test is to evaluate your abilities in several dimensions at 
 
 ## Your Mission
 
-Should you choose to accept it ... We have provided an [AWS Sam](https://github.com/awslabs/serverless-application-model) project that recieves an image over an API, resizes it and drops it into an s3 bucket. Right now its just 30 lines of actual source code, but it can already perform a task and every day it isnt in production clients cant resize images! You need to develop tooling to enable developers to iterate on this project and get changes to production as fast as possible. 
+Should you choose to accept it ... We have provided an [AWS Sam](https://github.com/awslabs/serverless-application-model) project that recieves a request over an api and simply drops it into an s3 bucket. You need to develop tooling to enable developers to iterate on this project and get changes to production as fast as possible. 
 
 At heavywater, in addition to writing source code, deveopers are responsible for writing infrastructure as code so tooling you develop must consider that developers may want to make changes on the cloudformation templates in addition to source.
 
@@ -23,6 +23,7 @@ At heavywater, in addition to writing source code, deveopers are responsible for
 ## Outcomes
 - A latest and gratest master is live in production
 - Another developer can pull request a code change on this project
+- The developer can work on the project on their local without dependence on external build system
 - Before the change can be merged into master:
   - Their infrastructure is validated according to security policies
   - Their dev branch is unit tested

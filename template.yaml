@@ -15,6 +15,7 @@ Resources:
   ServiceApiFunction:
     Type: AWS::Serverless::Function
     Properties:
+      Timeout: 30
       Handler: index.resize
       Runtime: python3.6
       CodeUri: ./src
@@ -36,16 +37,8 @@ Resources:
             Method: POST
             RestApiId:
               Ref: ServiceApi
-      Layers:
-        - !Ref PillowLibrary
       Tracing: Active
 
-  PillowLibrary:
-    Type: 'AWS::Serverless::LayerVersion'
-    Properties:
-      ContentUri: ./layer
-      CompatibleRuntimes: # optional
-        - python3.6
 
   SourceBucket:
     Type: AWS::S3::Bucket
