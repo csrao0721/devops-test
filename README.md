@@ -19,26 +19,6 @@ Should you choose to accept it ... We have provided an [AWS Sam](https://github.
 At heavywater, in addition to writing source code, deveopers are responsible for writing infrastructure as code so tooling you develop must consider that developers may want to make changes on the cloudformation templates in addition to source.
 
 ---
-## Tasks
-
-**Unordered list of possible tasks to complete**
-- [ ] create a github repository for this project
-- [ ] create an aws free teir account
-- [ ] write unit tests for python script
-- [ ] write integration tests against the launched stack
-- [ ] write code build spec file for unit tests
-- [ ] write code pipeline that executes build spec and unit tests
-- [ ] trigger code pipeline and publish from github webhooks
-- [ ] validate the template before launch
-- [ ] make the repo installable through some package manager
-  - examples: homebrew private tap, npm private repo, github releases, etc
-- [ ] add linting/static analysis to cloudformation template
-- [ ] add linting/static analysis to python script
-- [ ] add linting/static analysis to the config file
-- [ ] evaluate best practices on the project from a security context
-- [ ] comment on and remediate security issues present in the template and source code
- 
----
 
 ## Outcomes
 - A latest and gratest master is live in production
@@ -54,6 +34,26 @@ At heavywater, in addition to writing source code, deveopers are responsible for
   - The live production version is updated without downtime
   - Production is tested post update
   - An alarm is raised if something is wrong
+
+---
+
+## Tasks
+
+**Unordered list of possible tasks to complete**
+- [ ] create a github repository for this project
+- [ ] create an aws free teir account
+- [ ] write unit tests for python script
+- [ ] write integration tests against the launched stack
+- [ ] write codebuild spec file for unit tests
+- [ ] trigger code pipeline and publish from github webhooks/github actions
+- [ ] validate the template before launch
+- [ ] make the repo installable through some package manager
+- [ ] add linting/static analysis to cloudformation template
+- [ ] add linting/static analysis to python script
+- [ ] evaluate best practices on the project from a security context
+- [ ] comment on and remediate security issues present in the template and source code
+ 
+---
 
 ## Measurement Criteria
 
