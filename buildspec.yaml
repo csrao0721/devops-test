@@ -6,5 +6,4 @@ phases:
       - echo Nothing to do in the pre_build phase...
   build:
     commands:
-      - git checkout dev
       - ./deploy.sh bk-devops-test-bucket deploy-cft
