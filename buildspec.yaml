@@ -1,0 +1,9 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - ./deploy.sh $BUILD_ARTIFACT_BUCKET $APPLICATION_TEMPLATE

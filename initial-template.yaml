@@ -1,0 +1,55 @@
+---
+Description: Stack to Devops S3 Bucket
+Parameters:
+  pS3BucketName:
+    Description: S3 bucket name
+    Type: String
+    Default: bk-devops-test-bucket
+  pLoggingBucketName:
+    Description: S3 bucket name
+    Type: String
+    Default: bk-devops-logging
+Resources:
+  Bucket:
+    Type: "AWS::S3::Bucket"
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: !Ref pLoggingBucketName
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+          BlockPublicAcls: "true"
+          BlockPublicPolicy: "true"
+          IgnorePublicAcls: "true"
+          RestrictPublicBuckets: "true"
+  Bucket:
+    Type: "AWS::S3::Bucket"
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: !Ref pS3BucketName
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+          BlockPublicAcls: "true"
+          BlockPublicPolicy: "true"
+          IgnorePublicAcls: "true"
+          RestrictPublicBuckets: "true"
+  IAMdeployrole:
+      Type: 'AWS::IAM::Role'
+      Properties:
+        RoleName: codebuild-bk-devops-test-service-role
+        AssumeRolePolicyDocument:
+          Statement: 
+            - Effect: "Allow"
+              Principal: 
+                Service: 
+                - "codebuild.amazonaws.com"
+                - "cloudformation.amazonaws.com"
+              Action: 
+                - "sts:AssumeRole"
+        Path: /
+        Policies:
+        - PolicyName: deployment-role-policy
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action: '*'
+                Resource: '*'
