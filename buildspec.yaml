@@ -6,4 +6,4 @@ phases:
       - echo Nothing to do in the pre_build phase...
   build:
     commands:
-      - ./deploy.sh $BUILD_ARTIFACT_BUCKET deploy-cft
+      - ./deploy.sh $BUILD_ARTIFACT_BUCKET $APPLICATION_TEMPLATE
